@@ -1,11 +1,24 @@
 package com.saifyahya.songr.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Album {
+    public Album() {
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
     protected String title;
     protected String artist;
     protected int songCount;
     protected int lengthInSecond;
     protected String imageUrl;
+
 
     public Album(String title, String artist, int songCount, int lengthInSecond, String imageUrl) {
         this.title = title;
@@ -36,10 +49,7 @@ public class Album {
         this.imageUrl = imageUrl;
     }
     // getters
-    public String getTitle() {
-        return title;
-    }
-
+    public String getTitle() {return title;}
     public String getArtist() {
         return artist;
     }
@@ -54,5 +64,9 @@ public class Album {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

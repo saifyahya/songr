@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album</title>
+</head>
+<!--<body>-->
+<!--<div th:text="${albume}">-->
+<!--  <h1>Title:  <span th:text="${albume.title}"></span></h1>-->
+<!--  <h2>Artist: <span th:text="${albume.artist}"></span></h2>-->
+<!--  <p>Song counts: <span th:text="${albume.songCount}"></span></p>-->
+<!--  <p>Length(seconds): <span th:text="${albume.lengthInSecond}"></span></p>-->
+<!--  <img th:src="${albume.imageUrl}" style="width:auto; height:100px">-->
+<!--</div>-->
+<div>
+    <h1>Title: <span th:text="${album.title}"></span></h1>
+    <h2>Artist: <span th:text="${album.artist}"></span></h2>
+    <p>Song Count: <span th:text="${album.songCount}"></span></p>
+    <p>Length (seconds): <span th:text="${album.lengthInSecond}"></span></p>
+    <img th:src="${album.imageUrl}" style="width:auto; height:100px">
+</div>
+
+</body>
+</html>
