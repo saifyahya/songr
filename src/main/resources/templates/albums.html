@@ -9,9 +9,37 @@
 <div th:each="item:${album}">
 <h1>Title:  <span th:text="${item.title}"></span></h1>
     <h2>Artist: <span th:text="${item.artist}"></span></h2>
-    <p>Song count: <span th:text="${item.songCount}"></span></p>
+    <p>Song counts: <span th:text="${item.songCount}"></span></p>
     <p>Length(seconds): <span th:text="${item.lengthInSecond}"></span></p>
-    <img th:src="${item.imageUrl}" style="width:auto; height:100px">
+    <img th:src="${item.imageUrl}" style="width:auto; height:100px"><br>
+    <a th:href="@{'/delete-album/'+ ${item.id}}"
+       onclick="return confirm('Are you sure you want to delete this store?')">Delete Album</a>
 </div>
+
+<h1>New Album</h1>
+<form action="/create-album" method="post">
+    <fieldset>
+        <legend>Information:</legend>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist"><br><br>
+        <label for="songCount">Song Counts:</label>
+        <input type="text" id="songCount" name="songCount"><br><br>
+        <label for="lengthInSecond">Length(seconds):</label>
+        <input type="text" id="lengthInSecond" name="lengthInSecond"><br><br>
+        <label for="imageUrl">Image(url):</label>
+        <input type="text" id="imageUrl" name="imageUrl"><br><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+
+    <h1>Search for Album</h1>
+</form>
+<form action="/album" method="get">
+        <label for="title">Album title:</label>
+        <input type="text" id="album-title" name="title"><br><br>
+        <input type="submit" value="Submit">
+</form>
+
 </body>
 </html>
