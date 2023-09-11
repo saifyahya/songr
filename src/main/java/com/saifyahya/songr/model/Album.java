@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Album {
@@ -15,8 +17,10 @@ public class Album {
     protected Long id;
     protected String title;
     protected String artist;
-    protected int songCount;
-    protected int lengthInSecond;
+
+    protected Integer songCount;
+
+    protected Integer lengthInSecond;
     protected String imageUrl;
 
 
