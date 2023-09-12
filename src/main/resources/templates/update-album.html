@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+  <link rel="stylesheet" href="style-navs.css">
+
 </head>
 <body>
+<ul class="navbar">
+  <li><a href="/">Home</a></li>
+  <li><a href="/albums">Albums</a></li>
+  <li><a href="/songs">All Songs</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
 <form action="/update-album" method="post">
   <fieldset>
     <legend>New Information:</legend>
-    <label for="id">Album Id:</label>
-    <input type="text" id="id" name="id"><br><br>
+    <input type="hidden" id="id" name="id" th:value="${albumId}"><br><br>
     <label for="title">Title:</label>
     <input type="text" id="title" name="title"><br><br>
     <label for="artist">Artist:</label>
     <input type="text" id="artist" name="artist"><br><br>
-    <label for="songCount">Song Counts:(required)</label>
+    <label for="songCount">Song Counts:(*required)</label>
     <input type="text" id="songCount" name="songCount"><br><br>
-    <label for="lengthInSecond">Length(seconds):(required)</label>
+    <label for="lengthInSecond">Length(seconds):(*required)</label>
     <input type="text" id="lengthInSecond" name="lengthInSecond"><br><br>
     <label for="imageUrl">Image(url):</label>
     <input type="text" id="imageUrl" name="imageUrl"><br><br>
     <input type="submit" value="Update">
   </fieldset>
-</form>
 </form>
 </body>
 </html>
