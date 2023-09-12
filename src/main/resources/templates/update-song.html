@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="style-navs.css">
+
+</head>
+<body>
+<ul class="navbar">
+  <li><a href="/">Home</a></li>
+  <li><a href="/albums">Albums</a></li>
+  <li><a href="/songs">All Songs</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+<form action="/update-song" method="post">
+  <fieldset>
+    <legend>New Information:</legend>
+    <input type="hidden" id="id" name="id" th:value="${songId}"><br><br>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br><br>
+    <label for="length">Length(seconds):(*required)</label>
+    <input type="text" id="length" name="lengthInSeconds"><br><br>
+    <label for="track">Track Number:(*required)</label>
+    <input type="text" id="track" name="trackNumber"><br><br>
+    <input type="submit" value="Update">
+  </fieldset>
+</form>
+</body>
+</html>

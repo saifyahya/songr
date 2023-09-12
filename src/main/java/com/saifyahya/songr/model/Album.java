@@ -1,11 +1,9 @@
 package com.saifyahya.songr.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -22,6 +20,8 @@ public class Album {
 
     protected Integer lengthInSecond;
     protected String imageUrl;
+    @OneToMany(mappedBy = "album" ,  cascade = CascadeType.ALL)
+    protected List<Song> songs;
 
 
     public Album(String title, String artist, int songCount, int lengthInSecond, String imageUrl) {
@@ -48,6 +48,8 @@ public class Album {
     public void setLengthInSecond(int lengthInSecond) {
         this.lengthInSecond = lengthInSecond;
     }
+    public void setSongs(List<Song> songs) {this.songs = songs;}
+
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
@@ -73,4 +75,6 @@ public class Album {
     public Long getId() {
         return id;
     }
+
+    public List<Song> getSongs() {return songs;}
 }

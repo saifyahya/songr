@@ -52,14 +52,15 @@ public class AlbumController {
         else
             return "albums.html";
     }
-    @GetMapping("/update-album")
-    public String updateAlbumForm(){
+    @GetMapping("/update-album/{id}")
+    public String updateAlbumForm(Model m,@PathVariable Long id){
+        m.addAttribute("albumId",id);
         return "update-album.html";
     }
     @PostMapping("/update-album")
-    public RedirectView saveUpdatedAlbum(Long id,String title, String artist,  String songCount,  String lengthInSecond, String imageUrl) {
+    public RedirectView saveUpdatedAlbum( Long id ,String title, String artist,  String songCount,  String lengthInSecond, String imageUrl) {
             try {
-                Optional<Album> albumFromRepo = albumRepository.findById(id);  // optional type tha holds data or null from find byId method
+                Optional<Album> albumFromRepo = albumRepository.findById(id);  // optional type that holds data or null from find byId method
                 if (albumFromRepo.isPresent()) {  // if the album exists in DB
                     Album albumToUpdate = albumFromRepo.get();
                 Integer integerSongCount = Integer.parseInt(songCount);
@@ -78,11 +79,11 @@ public class AlbumController {
                     albumToUpdate.setImageUrl(imageUrl);
                 albumRepository.save(albumToUpdate);   //saving the updated album to database
             } else{
-                return new RedirectView("/update-album"); //  this will trigger the getMapping for the given path
+                return new RedirectView("/update-album/"+id); //  this will trigger the getMapping for the given path(album not found)
 
         }
     }catch(NumberFormatException e){
-                System.out.println("Error in parsing updated album: "+e);;
+                System.out.println("Error in parsing updated album: "+e);
                 return new RedirectView("/albums");
             }
         return new RedirectView("/albums");   // if updated done successfully

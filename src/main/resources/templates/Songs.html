@@ -1,12 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Title</title>
     <link rel="stylesheet" href="style-navs.css">
+
 </head>
 <body>
 <ul class="navbar">
@@ -15,8 +13,10 @@
     <li><a href="/songs">All Songs</a></li>
     <li><a href="#about">About</a></li>
 </ul>
-<h1>Capitalize Html template</h1>
-<p th:text="${sentence}"></p>
-
+<div  th:each="song:${songs}">
+    <h1 > Song Title <span th:text="${song.title}"></span></h1>
+    <h13 > Length(seconds) <span th:text="${song.lengthInSeconds}"></span></h13>
+    <h3 > Track Number <span th:text="${song.trackNumber}"></span></h3>
+</div>
 </body>
 </html>

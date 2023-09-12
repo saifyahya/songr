@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>Albums</title>
     <link rel="stylesheet" href="style-album.css">
+    <link rel="stylesheet" href="style-navs.css">
 </head>
 <body>
+<nav>
+    <ul class="navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/albums">Albums</a></li>
+        <li><a href="/songs">All Songs</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+</nav>
 <div th:each="item:${album}">
     <p>Album Id:  <span th:text = "${item.id}"></span></p>
 <h1>Title:  <span th:text="${item.title}"></span></h1>
@@ -15,13 +25,49 @@
     <img th:src="${item.imageUrl}" style="width:auto; height:100px"><br>
     <form th:action="@{'/delete-album/'+ ${item.id}}" th:method="delete">
     <input
-       onclick="return confirm('Are you sure you want to delete this store?')" type="submit" value="Delete Album">
+       onclick="return confirm('Are you sure you want to delete this album?')" type="submit" value="Delete Album">
     </form>
-    <form action="/update-album" method="get">
-        <input
-                onclick="return confirm('Are you sure you want to update this store?')" type="submit" value="Update Album">
+    <form th:action="@{'/update-album/'+${item.id}}" method="get">
+        <input type="submit" value="Update Album">
+    </form>
+    <div>Songs:</div>
+    <a th:href="@{'/songs-in-album/' + ${item.id}}">Show All</a>
+    <ul th:each="song : ${item.songs}">
+        <li th:text="${song.title}"></li>
+    </ul>
+
+<!--    <button  class="toggle-button" data-form-id="form-${item.id}">Add New Song</button>-->
+    <form  action="/addSong" method="POST" >
+        <fieldset>
+            <legend>Add Song to this Album</legend>
+            <label for="songTitle">Song Title: </label>
+            <input type="text" name="title" id="songTitle"><br><br>
+            <label for="lengthInSeconds">Length(seconds):(required)</label>
+            <input type="text" name="lengthInSeconds" id="lengthInSeconds"><br><br>
+            <label for="trackNumber">track Number:(required)</label>
+            <input type="text" name="trackNumber" id="trackNumber"><br><br>
+            <input type="hidden" name="albumId" th:value="${item.id}">
+            <input type="submit" value="Add Song To Album">
+        </fieldset>
     </form>
 </div>
+<!--<script type="text/javascript">-->
+<!--    const buttons = document.querySelectorAll('.toggle-button');-->
+
+<!--    buttons.forEach((button) => {-->
+<!--        button.addEventListener('click', () => {-->
+<!--            const formId = button.getAttribute('data-form-id');-->
+<!--            const form = document.getElementById(formId);-->
+
+<!--            if (form.style.display === 'none' || form.style.display === '') {-->
+<!--                form.style.display = 'block';-->
+<!--            } else {-->
+<!--                form.style.display = 'none';-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
 
 <h1>New Album</h1>
 <form action="/create-album" method="post">

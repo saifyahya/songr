@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style-navs.css">
+
+</head>
+<body>
+<ul class="navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/albums">Albums</a></li>
+    <li><a href="/songs">All Songs</a></li>
+    <li><a href="#about">About</a></li>
+</ul>
+<div>All Songs in <span th:text="${album.title}"></span></div>
+<ul th:each="song : ${album.songs}">
+  <li th:text="${song.title}"></li>
+
+<form th:action="@{'/delete-song/' + ${song.id} + '/' + ${album.id}}" th:method="delete">
+    <input
+            onclick="return confirm('Are you sure you want to delete this song?')" type="submit" value="Delete Song">
+</form>
+        <form th:action="@{'/update-song/'+${song.id}}" method="get" >
+            <input onclick="return confirm('Are you sure you want to update this song?')" type="submit" value="Update Song">
+        </form>
+</ul>
+
+</body>
+</html>
