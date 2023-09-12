@@ -7,6 +7,7 @@
 </head>
 <body>
 <div th:each="item:${album}">
+    <p>Album Id:  <span th:text = "${item.id}"></span></p>
 <h1>Title:  <span th:text="${item.title}"></span></h1>
     <h2>Artist: <span th:text="${item.artist}"></span></h2>
     <p>Song counts: <span th:text="${item.songCount}"></span></p>
@@ -15,6 +16,10 @@
     <form th:action="@{'/delete-album/'+ ${item.id}}" th:method="delete">
     <input
        onclick="return confirm('Are you sure you want to delete this store?')" type="submit" value="Delete Album">
+    </form>
+    <form action="/update-album" method="get">
+        <input
+                onclick="return confirm('Are you sure you want to update this store?')" type="submit" value="Update Album">
     </form>
 </div>
 
@@ -26,13 +31,13 @@
         <input type="text" id="title" name="title"><br><br>
         <label for="artist">Artist:</label>
         <input type="text" id="artist" name="artist"><br><br>
-        <label for="songCount">Song Counts:</label>
+        <label for="songCount">Song Counts:(required)</label>
         <input type="text" id="songCount" name="songCount"><br><br>
-        <label for="lengthInSecond">Length(seconds):</label>
+        <label for="lengthInSecond">Length(seconds):(required)</label>
         <input type="text" id="lengthInSecond" name="lengthInSecond"><br><br>
         <label for="imageUrl">Image(url):</label>
         <input type="text" id="imageUrl" name="imageUrl"><br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Add!">
     </fieldset>
 </form>
 
@@ -41,7 +46,7 @@
 <form action="/album" method="get">
         <label for="album-title">Album title:</label>
         <input type="text" id="album-title" name="title"><br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Search">
 </form>
 
 </body>
