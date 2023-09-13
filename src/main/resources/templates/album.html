@@ -18,6 +18,10 @@
     <p>Song Count: <span th:text="${album.songCount}"></span></p>
     <p>Length (seconds): <span th:text="${album.lengthInSecond}"></span></p>
     <img th:src="${album.imageUrl}" style="width:auto; height:100px">
+    <div>Songs:</div>
+    <ul th:each="song : ${album.songs}">
+        <li th:text="${song.title}"></li>
+    </ul>
 </div>
 
 </body>

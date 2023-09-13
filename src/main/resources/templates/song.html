@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Song</title>
+</head>
+<body>
+<ul class="navbar">
+  <li><a href="/">Home</a></li>
+  <li><a href="/albums">Albums</a></li>
+  <li><a href="/songs">All Songs</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+<h1>Title: <span th:text="${song.title}"></span></h1>
+<h2>Length(seconds): <span th:text="${song.lengthInSeconds}"></span></h2>
+<p>Track Number: <span th:text="${song.trackNumber}"></span></p>
+</body>
+</html>

@@ -101,5 +101,14 @@ public class SongController {
         return new RedirectView("/albums");
 
     }
+    @GetMapping("/song")
+    public String getSong(Model m,String title){
+        Song song = songRepository.findByTitle(title);
+        if(song!=null) {
+            m.addAttribute("song",song);
+            return "song.html";}
+        else
+            return "songs.html";
+    }
 
 }
